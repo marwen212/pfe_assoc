@@ -19,4 +19,10 @@ class Personne extends Model
         'Situation_Fam',
         'nb_enfants'
     ];
+    public function cheques()
+    {
+        return $this->hasMany(Cheque::class);
+
+        //return $this->hasMany('App\Models\Coupon', 'id', 'personne_id');
+    }
 }

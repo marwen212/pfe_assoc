@@ -7,6 +7,13 @@ use App\Models\Personne;
 
 class PersonneController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware('permission:personne-list|personne-create|personne-edit|personne-delete', ['only' => ['index', 'store']]);
+        $this->middleware('permission:personne-create', ['only' => ['create', 'store']]);
+        $this->middleware('permission:personne-edit', ['only' => ['edit', 'update']]);
+        $this->middleware('permission:personne-delete', ['only' => ['destroy']]);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -87,6 +94,7 @@ class PersonneController extends Controller
      */
     public function update(Request $request, Personne $personne)
     {
+
         request()->validate([
             'nom' => 'required',
             'prenom' => 'required',

@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ChequeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +31,9 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('users', UserController::class);
     Route::resource('personne', \App\Http\Controllers\PersonneController::class);
     Route::resource('marchand', \App\Http\Controllers\MarchandController::class);
-
+    //Route::get('/search', 'App\Http\Controllers\ChequeController@search')->name('cheque.create');
+    //Route::get('/search','App\Http\Controllers\ChequeController@search')->name('cheque.create');
+    //Route::get('/search/action', 'App\Http\Controllers\ChequeController@action')->name('search.action');
 
     /*Route::get('/marchand', 'App\Http\Controllers\marchand@index')->name('marchand.index');
     Route::get('/marchand/create', 'App\Http\Controllers\marchand@create')->name('marchand.create');
@@ -44,3 +46,13 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::post('/profile', 'App\Http\Controllers\UserController@postProfile')->name('user.postProfile');
 });
+Route::get('/cheques/create', 'App\Http\Controllers\ChequeController@create')->name('cheque.create');
+Route::post('/cheques/createe', 'App\Http\Controllers\ChequeController@store')->name('cheque.store');
+
+Route::get('/cheques', 'App\Http\Controllers\ChequeController@index')->name('cheque.index');
+//Route::get('/cheques/create', 'App\Http\Controllers\ChequeController@show')->name('cheque.create');
+Route::get('/cheques/show/{id}', 'App\Http\Controllers\ChequeController@show')->name('cheque.show');
+
+/*Route::get('/cheque/create', 'App\Http\Controllers\ChequeController@create')->name('cheque.create');
+Route::get('/cheque/printe', 'App\Http\Controllers\ChequeController@imprimer')->name('cheque.printe');*/
+
